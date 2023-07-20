@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Homepage</title>
+  <style>
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+      line-height: 1.6;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* Jumbotron styles */
+    .jumbotron {
+      background-color: #f0ad4e;
+      text-align: center;
+      padding: 2rem;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+
+    .jumbotron h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .jumbotron p {
+      font-size: 1.5rem;
+    }
+
+    /* Customized links styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      background-color: #222;
+      padding: 1rem;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .navbar a:hover {
+      background-color: #444;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .navbar .nav-item {
+      margin-right: 1rem;
+    }
+
+    /* Main content styles */
+    section {
+      padding: 2rem;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    /* Conference list styles */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 2rem;
+      border: 1px solid #f0ad4e;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    li h3 {
+      color: #f0ad4e;
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    p {
+      margin: 0.5rem 0;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+    }
+
+    /* Responsive layout for smaller screens */
+    @media screen and (max-width: 768px) {
+      .jumbotron h1 {
+        font-size: 2.5rem;
+      }
+      .jumbotron p {
+        font-size: 1.2rem;
+      }
+      .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .navbar .nav-item {
+        margin: 0.5rem;
+      }
+      .navbar-brand {
+        margin-bottom: 1rem;
+      }
+      .jumbotron .btn-group {
+        flex-direction: column;
+      }
+      .jumbotron .btn {
+        margin-bottom: 1rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body id="home" data-spy="scroll" data-target=".navbar" data-offset="100">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="http://www.fossir.rw" target="_blank">Powered By <span class="text-warning">Conference
+        planners</span></a>
+    <div class="navbar-items">
+      <a class="nav-item" href="#home">Home</a>
+      <a class="nav-item" href="#about">About</a>
+      <a class="nav-item" href="/all/speakers">Speakers</a>
+      <a class="nav-item" href="#schedule">Schedule</a>
+    </div>
+  </nav>
+  <!-- /Navbar -->
+
+  <header>
+    <h1>Welcome to Our Homepage</h1>
+    <!-- jumbotron -->
+    <div class="jumbotron jumbotron-fluid bg-primary text-light">
+      <div class="container text-sm-center pt-5">
+        <h1 class="display-4">Conference Planners</h1>
+        <p class="lead">A One-Day Conference About All Things</p>
+        <div class="btn-group mt-4" role="group" aria-label="Callout buttons">
+          <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#register">Register Now</button>
+          <a href="/all/speakers" class="btn btn-dark btn-lg">See Speakers</a>
+        </div>
+      </div>
+    </div><!-- /jumbotron -->
+    <div class="container pt-4">
+      
+  </header>
+
+  <div class="jumbotron">
+    <h2>Explore the Latest Conferences</h2>
+    <p>Stay updated with the most exciting conferences on various topics.</p>
+  </div>
+
+  <section>
+    <h2>Conferences</h2>
+    <ul>
+      {% for conference in conferences %}
+      <li>
+        <h3>{{ conference.name }}</h3>
+        <p>
+          Email: {{ conference.email }}<br>
+          Job Role: {{ conference.jobRole }}<br>
+          Topic: {{ conference.topic }}<br>
+          Card Number: {{ conference.CardNumber }}<br>
+          Zip Code: {{ conference.ZipCode }}<br>
+          CVV: {{ conference.CVV }}<br>
+          Expiration: {{ conference.month }}/{{ conference.year }}
+        </p>
+        <a href="{% url 'conferencedetail' conference.id %}">View more about this conference</a>
+      </li>
+      {% endfor %}
+    </ul>
+    <hr>
+    <div>
+      <a href="{% url 'registerconference' %}">Register for a Conference</a>
+    </div>
+      <!-- About -->
+<section id="about" class="container py-5">
+    <div class="row">
+      <div class="col-lg-6 order-lg-2">
+        <h2 class="mb-4">About Conference Planners</h2>
+        <img class="mb-4 img-fluid rounded" src="https://example.com/path/to/your/image.jpg" alt="Conference Planners Image">
+        <p class="lead">Conference Planners is a team of passionate event organizers committed to creating outstanding conferences and events that bring together professionals from various industries to share knowledge and insights.</p>
+        <p>We strive to deliver exceptional experiences for our attendees, curating thought-provoking sessions and inviting expert speakers to share their expertise.</p>
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <h2 class="mb-4">Expert Speakers</h2>
+        <p class="lead">Our events feature a lineup of expert speakers from diverse backgrounds, offering valuable insights and practical tips in their respective fields.</p>
+        <ul class="list-unstyled">
+          <li><i class="fas fa-check-circle text-primary"></i> Engaging and informative sessions</li>
+          <li><i class="fas fa-check-circle text-primary"></i> Networking opportunities</li>
+          <li><i class="fas fa-check-circle text-primary"></i> Cutting-edge industry trends</li>
+          <li><i class="fas fa-check-circle text-primary"></i> Inspirational keynote speakers</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- /About -->
+  
+  </section>
+
+  <footer>
+    <p>© 2023 My Homepage. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
